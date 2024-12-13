@@ -7,6 +7,11 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.listen(port, () => {
-  console.log(`API running on http://localhost:${port}`);
-});
+// Não inicialize o servidor aqui, apenas exporte o app
+const startServer = () => {
+  return app.listen(port, () => {
+    console.log(`API running on http://localhost:${port}`);
+  });
+};
+
+module.exports = { app, startServer };
