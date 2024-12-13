@@ -1,0 +1,28 @@
+name: Test API
+
+on:
+  push:
+    branches:
+      - main  # Executa o workflow quando há push na branch main
+  pull_request:
+    branches:
+      - main  # Executa o workflow quando há pull request para a branch main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Utiliza a última versão do Ubuntu para rodar os testes
+
+    steps:
+      - name: Checar o código
+        uses: actions/checkout@v2  # Faz o checkout do código
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Define a versão do Node.js
+
+      - name: Instalar dependências
+        run: npm install  # Instala as dependências do projeto
+
+      - name: Rodar testes
+        run: npm test  # Executa os testes com Jest
